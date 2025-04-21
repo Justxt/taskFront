@@ -36,7 +36,7 @@ const TaskForm = () => {
         }
         setLoading(false);
       } else {
-        // If not in edit mode, ensure loading is false
+        // aqui verificamos si no es modo edicion y no tenemos id
         setLoading(false);
       }
     };
@@ -68,7 +68,6 @@ const TaskForm = () => {
       navigate("/");
     } catch (error) {
       console.error("Failed to save task:", error);
-      // Optionally: Add user feedback for the error
     }
   };
 

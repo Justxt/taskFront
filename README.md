@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+# Gestor de Tareas Simple
+- Task! Esta es una app web simple para seguir tareas.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+-- El **backend** Guarda, busca, actualiza y borra las tareas usando NestJS y una base de datos SQLite (`tasks.db`) para local y PostgreSQL (postrgresql de Render.com) para en la nube. Cuando lo inicias, crea unas tareas de ejemplo. Ofrece una API para que el frontend (o cualquier otra cosa) hable con él.
+-- El **frontend** es lo que ves y usas en el navegador. Hecho con React, te muestra la lista de tareas, te deja crear nuevas, editarlas, borrarlas y filtrarlas. Se conecta al backend para hacer todo esto.
 
-Currently, two official plugins are available:
+# Repositorio de Github
+├── task/        # Todo lo del backend (NestJS)
+https://github.com/Justxt/task
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+└── task-front/  # Todo lo del frontend (React)
+https://github.com/Justxt/taskFront
 
-## Expanding the ESLint configuration
+# Video explicativo
+https://youtu.be/WHrlNQAsDKs
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Deploy
+### Backend (`task/`)
+https://task-bzcx.onrender.com/tasks
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Frontend (`task-front/`)
+https://task-front-56510b8a6-justxts-projects.vercel.app/
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### ¿Qué hace el Backend?
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+*   Guardar, buscar, editar y borrar tareas.
+*   Usa una base de datos SQLite (`tasks.db`) para guardar todo.
+*   Una base de datos PostgreSQL para guardar todo.
+*   Crea tareas de ejemplo al iniciar por primera vez.
+*   Calcula si una tarea está retrasada.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Rutas de la API (Backend)
+
+| Método | Ruta         | ¿Qué hace?                      |
+| :----- | :----------- | :------------------------------ |
+| GET    | /tasks       | Trae todas las tareas           |
+| GET    | /tasks/:id   | Busca una tarea por su ID       |
+| POST   | /tasks       | Crea una tarea nueva            |
+| PATCH  | /tasks/:id   | Actualiza una tarea existente   |
+| DELETE | /tasks/:id   | Elimina una tarea               |
+| GET    | /tasks/filter | Filtra tareas (por fecha/retraso) |
+
+### ¿Qué tiene el Frontend?
+
+*   Una tabla para ver todas las tareas.
+*   Filtros para buscar tareas por fecha o si están atrasadas.
+*   Un formulario para crear tareas nuevas.
+*   Un formulario para editar tareas existentes.
+*   Botones para marcar tareas como completadas o borrarlas.
