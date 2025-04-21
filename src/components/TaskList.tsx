@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Task, TaskFilterData, TaskStatus } from "../types/task";
 import { getTasks, deleteTask } from "../services/taskService";
@@ -37,21 +37,6 @@ const TaskList = () => {
 
   const resetFilters = () => {
     setFilters({});
-  };
-
-  const getStatusColor = (status: TaskStatus) => {
-    switch (status) {
-      case TaskStatus.COMPLETED:
-        return "text-green-600";
-      case TaskStatus.IN_PROGRESS:
-        return "text-blue-600";
-      case TaskStatus.PENDING:
-        return "text-yellow-600";
-      case TaskStatus.CANCELLED:
-        return "text-red-600";
-      default:
-        return "text-gray-600";
-    }
   };
 
   const getStatusBadge = (status: TaskStatus) => {
